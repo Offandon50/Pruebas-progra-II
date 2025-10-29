@@ -55,5 +55,28 @@ FAILED tests/test_cuenta_pytest.py::test_retirada_resta_del_saldo - AttributeErr
 ======================== 1 failed, 2 passed in 0.35s =========================
 
 PRUEBA ACERTADA:
+[...]
 
+tests/test_cuenta_pytest.py::test_saldo_inicial_cero PASSED             [ 33%] 
+tests/test_cuenta_pytest.py::test_ingreso_suma_al_saldo PASSED          [ 66%] 
+tests/test_cuenta_pytest.py::test_retirada_resta_del_saldo PASSED       [100%]
+
+============================= 3 passed in 0.11s ==============================
 """
+
+class Cuenta:
+    def __init__(self):
+        self._saldo = 0
+
+    @property
+    def saldo(self):
+        return self._saldo
+    
+    def ingresar(self, cuantia):
+        self._saldo += cuantia
+    
+    def retirar(self, cuantia):
+        if self._saldo < cuantia:
+            raise ValueError("Fondos insuficientes")
+        else:
+            self._saldo -= cuantia
